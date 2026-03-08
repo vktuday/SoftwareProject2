@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: face-app-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        value: "mongodb://admin:admin@cluster0-shard-00-00.aeewe.mongodb.net:27017,cluster0-shard-00-01.aeewe.mongodb.net:27017,cluster0-shard-00-02.aeewe.mongodb.net:27017/?ssl=true&replicaSet=atlas-c86vy9-shard-0&authSource=admin&appName=Cluster0"
+        fromDatabase:
+          name: your-mongodb
+          property: connectionString
