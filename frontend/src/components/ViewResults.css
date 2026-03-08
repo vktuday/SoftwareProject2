@@ -1,0 +1,17 @@
+.results-container {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.results-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.result-card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
