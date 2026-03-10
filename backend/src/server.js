@@ -1,8 +1,17 @@
+const express = require("express");
+const cors = require("cors");
 const dns = require('node:dns').promises;
-dns.setServers(['1.1.1.1', '8.8.8.8']);
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const { createApp } = require("./app");
+
+const app = express();
+
+// allow the frontend origin (or use `cors()` to allow all origins)
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN || "https://software-project2-fe.vercel.app",
+  })
+);
 
 // Load environment variables from .env
 dotenv.config();
@@ -22,8 +31,6 @@ async function start() {
     await mongoose.connect(MONGODB_URI);
     console.log("✅ Connected to MongoDB");
     console.log("✅ Mongo connected to:", mongoose.connection.host, mongoose.connection.name);
-
-    const app = createApp();
 
     // Start HTTP server
     app.listen(PORT, () => {
