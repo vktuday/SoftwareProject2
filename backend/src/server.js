@@ -8,9 +8,7 @@ const app = express();
 
 // allow the frontend origin (or use `cors()` to allow all origins)
 app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN || "https://software-project2-fe.vercel.app",
-  })
+  cors()
 );
 
 // Load environment variables from .env
