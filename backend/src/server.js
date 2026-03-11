@@ -1,15 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const dns = require('node:dns').promises;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const { createApp } = require("./app");
 
-const app = express();
-
-// allow the frontend origin (or use `cors()` to allow all origins)
-app.use(
-  cors()
-);
+const app = createApp();
 
 // Load environment variables from .env
 dotenv.config();
@@ -22,15 +17,12 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
-// Start the server and connect to database
 async function start() {
   try {
-    // Connect to MongoDB Atlas
     await mongoose.connect(MONGODB_URI);
     console.log("✅ Connected to MongoDB");
     console.log("✅ Mongo connected to:", mongoose.connection.host, mongoose.connection.name);
 
-    // Start HTTP server
     app.listen(PORT, () => {
       console.log(`✅ Server listening on http://localhost:${PORT}`);
     });
