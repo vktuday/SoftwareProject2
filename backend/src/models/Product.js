@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Basic product schema for Release 1 (read-only)
 const ProductSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },

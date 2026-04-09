@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Embedded schema for quiz results
 const QuizResultSchema = new mongoose.Schema(
   {
     skinType: { type: String, required: true },
@@ -10,18 +9,28 @@ const QuizResultSchema = new mongoose.Schema(
   { _id: false }
 );
 
-// Main User schema
 const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, minlength: 2, maxlength: 60 },
     email: { type: String, required: true, unique: true, trim: true, lowercase: true },
     passwordHash: { type: String, required: true },
-    
-    // Basic profile info captured once from the quiz
+
+    role: {
+      type: String,
+      enum: ["user", "trainer"],
+      default: "user",
+    },
+
     age: { type: Number, default: null },
     gender: { type: String, default: null },
 
     quizResult: { type: QuizResultSchema, default: null },
+
+    favorites: [
+      {
+        type: String,
+      },
+    ],
   },
   { timestamps: true }
 );

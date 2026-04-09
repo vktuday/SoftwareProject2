@@ -3,10 +3,8 @@ const { getAllProducts, getProductById } = require("../controllers/productContro
 
 const router = express.Router();
 
-// Public: list all products
 router.get("/", getAllProducts);
 
-// Public: get single product
 router.get("/:id", getProductById);
 
 module.exports = router;
